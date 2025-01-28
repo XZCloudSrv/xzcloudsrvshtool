@@ -72,9 +72,9 @@
 
 ```bash
 if [ -f /usr/bin/curl ]; then 
-    curl -sSL https://file.78san.top/shell/linux.sh -o linux.sh
+    curl -sSL https://raw.githubusercontent.com/XZCloudSrv/xzcloudsrvshtool/refs/heads/main/linux.sh
 else 
-    wget -O linux.sh https://file.78san.top/shell/linux.sh
+    wget -O linux.sh https://raw.githubusercontent.com/XZCloudSrv/xzcloudsrvshtool/refs/heads/main/linux.sh
 fi && bash linux.sh
 ```
 ```python
