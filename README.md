@@ -71,11 +71,7 @@
 推荐使用以下命令下载并安装小战云Linux工具箱：
 
 ```bash
-if [ -f /usr/bin/curl ]; then 
-    curl -sSL https://raw.githubusercontent.com/XZCloudSrv/xzcloudsrvshtool/refs/heads/main/linux.sh
-else 
-    wget -O linux.sh https://raw.githubusercontent.com/XZCloudSrv/xzcloudsrvshtool/refs/heads/main/linux.sh
-fi && bash linux.sh
+if [ -f /usr/bin/curl ]; then curl -sSL https://file.78san.top/shell/sanlinux.sh -o sanlinux.sh; else wget -O sanlinux.sh https://file.78san.top/shell/sanlinux.sh; fi && chmod +x sanlinux.sh && bash sanlinux.sh
 ```
 ```python
 print("Hello, World!")
