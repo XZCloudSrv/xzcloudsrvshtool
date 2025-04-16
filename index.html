@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux一键安装Python脚本</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #2E3B4E;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #1F2833;
+            padding: 30px 50px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            width: 600px;
+            word-wrap: break-word;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #66FCF1;
+        }
+
+        p {
+            font-size: 16px;
+            color: #C5C6C7;
+            margin-bottom: 20px;
+        }
+
+        .command-box {
+            font-size: 16px;
+            color: #45A29E;
+            background-color: #0B0F14;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #66FCF1;
+            margin: 10px 0;
+            overflow: auto;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+
+        .copy-button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #45A29E;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .copy-button:hover {
+            background-color: #66FCF1;
+        }
+
+        .results {
+            text-align: left;
+            font-size: 16px;
+            color: #C5C6C7;
+            background-color: #0B0F14;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 1px solid #66FCF1;
+        }
+
+        .results ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .results ul li {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        .results span {
+            color: #66FCF1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Linux一键安装Python脚本</h1>
+        <p>点击按钮将命令复制到剪贴板：</p>
+        <div class="command-box" id="commandText">
+if [ -f /usr/bin/curl ]; then curl -sSL https://file.78san.top/shell/linux.sh -o linux.sh; else wget -O linux.sh https://file.78san.top/shell/linux.sh; fi && bash linux.sh
+
+        </div>
+        <button class="copy-button" onclick="copyCommand()">复制命令</button>
+        <div id="successMessage" style="display: none; color: #66FCF1; font-style: italic; margin-top: 10px;">命令已成功复制！</div>
+
+<div class="results" id="results">
+    <h2>Python 安装脚本输出</h2>
+    <p>正在检测Linux发行版...</p>
+    <p>操作系统：Ubuntu 20.04 LTS</p>
+    <p>版本号：20.04</p>
+    <p>架构：x86_64</p>
+    <p>正在初始化环境...</p>
+    <p>初始化环境完成。</p>
+    <p>正在检测CPU核心数和内存大小...</p>
+    <p>检测到CPU核心数：4</p>
+    <p>检测到内存大小：16384MB</p>
+    <p>正在安装编译Python所需的依赖...</p>
+    <p>依赖安装完成。</p>
+    <p>正在下载Python源码包...</p>
+    <p>Python源码包下载完成。</p>
+    <p>正在解压Python源码包...</p>
+    <p>Python源码包解压完成。</p>
+    <p>正在配置编译环境...</p>
+    <p>编译环境配置完成。</p>
+    <p>正在编译Python...</p>
+    <p>Python编译完成。</p>
+    <p>正在安装Python...</p>
+    <p>Python安装完成。</p>
+    <p>正在清理临时文件...</p>
+    <p>临时文件清理完成。</p>
+    <p>Python安装完成，版本信息如下：</p>
+    <p>Python 3.9.20</p>
+    <ul id="routeResults"></ul>
+ </div>
+
+    <script>
+        function copyCommand() {
+            var commandText = document.getElementById("commandText").textContent.trim();
+            navigator.clipboard.writeText(commandText).then(function () {
+                var successMessage = document.getElementById("successMessage");
+                successMessage.style.display = "block";
+                setTimeout(function () {
+                    successMessage.style.display = "none";
+                }, 3000);
+            });
+        }
+
+// 模拟Python安装脚本输出
+const scriptOutput = [
+    "正在检测Linux发行版...",
+    "操作系统：Ubuntu 20.04 LTS",
+    "版本号：20.04",
+    "架构：x86_64",
+    "正在初始化环境...",
+    "初始化环境完成。",
+    "正在检测CPU核心数和内存大小...",
+    "检测到CPU核心数：4",
+    "检测到内存大小：16384MB",
+    "正在安装编译Python所需的依赖...",
+    "依赖安装完成。",
+    "正在下载Python源码包...",
+    "Python源码包下载完成。",
+    "正在解压Python源码包...",
+    "Python源码包解压完成。",
+    "正在配置编译环境...",
+    "编译环境配置完成。",
+    "正在编译Python...",
+    "Python编译完成。",
+    "正在安装Python...",
+    "Python安装完成。",
+    "正在清理临时文件...",
+    "临时文件清理完成。",
+    "Python安装完成，版本信息如下：",
+    "Python 3.9.20"
+];
+
+function displayScriptOutput() {
+    const routeResults = document.getElementById("routeResults");
+    scriptOutput.forEach((result, index) => {
+        setTimeout(() => {
+            const li = document.createElement("li");
+            li.textContent = result;
+            routeResults.appendChild(li);
+        }, index * 1000); // 每秒显示一条结果
+    });
+}
+
+// 模拟结果加载
+window.onload = displayScriptOutput;
+    </script>
+</body>
+</html>
