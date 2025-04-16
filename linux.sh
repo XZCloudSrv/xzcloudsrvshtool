@@ -1,5 +1,26 @@
 #!/bin/bash
 
+# 定义获取文案的函数
+# ==== 小战云 · 文案片段 ====
+get_san_quote() {
+    id_file="$HOME/.san_quote_id"
+    [ ! -f "$id_file" ] && echo 1 > "$id_file"
+    id=$(cat "$id_file")
+    echo $((id + 1)) > "$id_file"
+    time=$(date '+%Y-%m-%d %H:%M:%S')
+    quote=$(curl -s https://api.78san.top/copy/copy.php?count=1 | grep -oP '"data"\s*:\s*"\K[^"]+')
+    if [[ -n "$quote" ]]; then
+        echo -e "\n✨ \e[36m[No.$id] [$time]\e[0m"
+        echo -e "📜 \e[33m$quote\e[0m\n"
+    else
+        echo -e "❌ \e[31m获取失败，请检查网络或 API 地址。\e[0m"
+    fi
+}
+# 小战云文案API使用方法地址
+# https://api.78san.top/copy/
+# 目前属于完全免费状态可以免费接入
+# ============================
+# 在脚本中调用该函数
 
 # 获取服务器IP地址
 server_ip=$(hostname -I)
@@ -29,12 +50,14 @@ EOF
     echo "服务器IP地址: $server_ip"
     echo "服务器运行时间: $uptime_cn"
     echo "$greeting"  
+    get_san_quote
     echo "1. 系统操作菜单（2024/7/7更新）"
     echo "2. 网络操作菜单（2024/7/7更新）"
     echo "3. 硬盘大全菜单（2024/7/7更新）"
     echo "4. 其他操作菜单（2024/6/7更新）"
     echo "5. 服务器压榨菜单（2024/6/7更新）"
     echo "q. 退出"
+    get_san_quote
 }
 
 
@@ -61,6 +84,7 @@ system_menu() {
     echo "16. 一键更换CentOS8 stream仓库源"
     echo "17. 一键查看SSH登录成功的IP地址"
     echo "q. 返回上级菜单"
+    get_san_quote
     echo "===================="
 }
 
@@ -84,6 +108,7 @@ network_menu() {
     echo "12. 一键查看服务器在使用的端口"
     echo "13. 一键查看什么IP在跑带宽"
     echo "q. 返回上级菜单"
+    get_san_quote
     echo "===================="
 }
 
@@ -105,6 +130,7 @@ file_transfer_menu() {
     echo "10. 一键查看SSH历史输入命令"
     echo "11. 一键清空SSH历史输入命令"
     echo "q. 返回上级菜单"
+    get_san_quote
     echo "===================="
 }
 
@@ -1200,6 +1226,7 @@ do
                 echo "7. 一键安装魔方云Centos版"
                 echo "8. 一键安装宝塔WAF最新版"
                 echo "q. 返回上级菜单"
+                get_san_quote
                 echo "===================="
                 read -p "请输入选项: " other_choice
                 case $other_choice in
@@ -1239,6 +1266,7 @@ do
                 echo "4. 一键开启/关闭KSM内存回收"
                 echo "5. 一键关闭SELinux"
                 echo "q. 返回上级菜单"
+                get_san_quote
                 echo "===================="
                 read -p "请输入选项: " other_choice
                 case $other_choice in
